@@ -19,24 +19,16 @@ true
 export CHECKERFRAMEWORK=$ROOT/checker-framework
 
 ## Obtain guava
-(cd $ROOT && git clone --depth 1 https://github.com/smillst/guava.git
+(cd $ROOT && git clone --depth 1 https://github.com/typetools/guava.git)
 
-if [[ "$1" == "formatter" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.formatter.FormatterChecker)
-elif [[ "$1" == "interning" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.interning.InterningChecker)
-elif [[ "$1" == "lock" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.lock.LockChecker)
-elif [[ "$1" == "nullness-fbc" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.nullness.NullnessChecker)
-elif [[ "$1" == "nullness-raw" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.nullness.NullnessRawnessChecker)
-elif [[ "$1" == "regex" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.regex.RegexChecker)
-elif [[ "$1" == "signature" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.signature.SignatureChecker)
+if [[ "$1" == "lock" ]]; then
+  (cd $ROOT/guava/guava && mvn compile -Dcheckerframework.checkers=org.checkerframework.checker.lock.LockChecker)
+elif [[ "$1" == "nullness" ]]; then
+  (cd $ROOT/guava/guava && mvn compile -Dcheckerframework.checkers=org.checkerframework.checker.nullness.NullnessChecker,org.checkerframework.checker.nullness.NullnessRawnessChecker)
+elif [[ "$1" == "misc" ]]; then
+  (cd $ROOT/guava/guava && mvn compile -Dcheckerframework.checkers=org.checkerframework.checker.regex.RegexChecker,org.checkerframework.checker.interning.InterningChecker,org.checkerframework.checker.formatter.FormatterChecker,org.checkerframework.checker.signature.SignatureChecker)
 elif [[ "$1" == "index" ]]; then
-  (cd guava/guava && maven compile -Dcheckerframework.annotationprocessors=org.checkerframework.checker.index.IndexChecker)
+  (cd $ROOT/guava/guava && mvn compile -Dcheckerframework.checkers=org.checkerframework.checker.index.IndexChecker)
 elif [[ "$1" == "nothing" ]]; then
   true
 else
