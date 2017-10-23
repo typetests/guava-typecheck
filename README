@@ -1,1 +1,1 @@
-This is a dummy project to make Travis run tests to type-check Guava.
+This is a dummy project to make Travis type-check Guava, but the Travis jobs only fail if one of the checkers crash.
