@@ -13,13 +13,13 @@ echo "Should next trigger downstream jobs."
 true
 
 ## Build Checker Framework
-(cd $ROOT && git clone --depth 1 https://github.com/typetools/checker-framework.git)
+(cd $ROOT && git clone --depth 1 -b casestudy-guava https://github.com/panacekcz/checker-framework.git)
 # This also builds annotation-tools and jsr308-langtools
 (cd $ROOT/checker-framework/ && ./.travis-build-without-test.sh downloadjdk)
 export CHECKERFRAMEWORK=$ROOT/checker-framework
 
 ## Obtain guava
-(cd $ROOT && git clone --depth 1 https://github.com/typetools/guava.git)
+(cd $ROOT && git clone --depth 1 -b index-checker-suppress https://github.com/panacekcz/guava.git)
 
 if [[ "$1" == "lock" ]]; then
   (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.lock.LockChecker)
