@@ -6,6 +6,9 @@ sudo: false
 
 env:
   - GROUP=index
+  - GROUP=lock
+  - GROUP=nullness
+  - GROUP=misc
 ## This is just to determine the time to do the background build.
 #  - GROUP=nothing
 
