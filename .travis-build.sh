@@ -8,28 +8,25 @@ ROOT=$TRAVIS_BUILD_DIR/..
 # Fail the whole script if any command fails
 set -e
 
-## Short version, intended to be used when triggering downstream Travis jobs.
-echo "Should next trigger downstream jobs."
-true
-
 ## Build Checker Framework
-(cd $ROOT && git clone --depth 1 https://github.com/typetools/checker-framework.git)
+cd $ROOT && git clone --depth 1 https://github.com/typetools/checker-framework.git
 # This also builds annotation-tools and jsr308-langtools
-(cd $ROOT/checker-framework/ && ./.travis-build-without-test.sh downloadjdk)
+cd $ROOT/checker-framework/ && ./.travis-build-without-test.sh downloadjdk
 export CHECKERFRAMEWORK=$ROOT/checker-framework
 
 ## Obtain guava
-(cd $ROOT && git clone --depth 1 https://github.com/typetools/guava.git)
+cd $ROOT && git clone --depth 1 https://github.com/typetools/guava.git
 
 if [[ "$1" == "lock" ]]; then
-  (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.lock.LockChecker)
+  cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.lock.LockChecker
 elif [[ "$1" == "nullness" ]]; then
-  (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.nullness.NullnessChecker)
+  cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.nullness.NullnessChecker
 elif [[ "$1" == "misc" ]]; then
-  (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.regex.RegexChecker,org.checkerframework.checker.interning.InterningChecker,org.checkerframework.checker.formatter.FormatterChecker,org.checkerframework.checker.signature.SignatureChecker)
+  cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.regex.RegexChecker,org.checkerframework.checker.interning.InterningChecker,org.checkerframework.checker.formatter.FormatterChecker,org.checkerframework.checker.signature.SignatureChecker
 elif [[ "$1" == "index" ]]; then
-  (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.index.IndexChecker)
+  cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.index.IndexChecker
 elif [[ "$1" == "nothing" ]]; then
+  ## Short version, intended to be used when triggering downstream Travis jobs.
   true
 else
   echo "Bad argument '$1' to travis-build.sh"
