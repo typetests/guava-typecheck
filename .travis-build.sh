@@ -14,8 +14,13 @@ cd $ROOT && git clone --depth 1 https://github.com/typetools/checker-framework.g
 cd $ROOT/checker-framework/ && ./.travis-build-without-test.sh downloadjdk
 export CHECKERFRAMEWORK=$ROOT/checker-framework
 
+echo "Obtained and built the Checker Framework"
+ls $ROOT/checker-framework
+
 ## Obtain guava
 cd $ROOT && git clone --depth 1 https://github.com/typetools/guava.git
+
+echo "Obtained guava"
 
 if [[ "$1" == "lock" ]]; then
   cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.lock.LockChecker
