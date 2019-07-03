@@ -24,7 +24,7 @@ export CHECKERFRAMEWORK=$ROOT/checker-framework
 if [[ "$1" == "lock" ]]; then
   (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.lock.LockChecker)
 elif [[ "$1" == "nullness" ]]; then
-  (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.nullness.NullnessChecker,org.checkerframework.checker.nullness.NullnessRawnessChecker)
+  (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.nullness.NullnessChecker)
 elif [[ "$1" == "misc" ]]; then
   (cd $ROOT/guava/guava && mvn compile -P checkerframework-local -Dcheckerframework.checkers=org.checkerframework.checker.regex.RegexChecker,org.checkerframework.checker.interning.InterningChecker,org.checkerframework.checker.formatter.FormatterChecker,org.checkerframework.checker.signature.SignatureChecker)
 elif [[ "$1" == "index" ]]; then
