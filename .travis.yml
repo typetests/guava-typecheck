@@ -12,6 +12,17 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.m2/
 
+# `travis_wait` does not work, maybe because the process forks?
+https://github.com/travis-ci/dpl/issues/568#issuecomment-272465349
+before_deploy: |
+  function keep_alive() {
+    while true; do
+      echo -en "\a"
+      sleep 5
+    done
+  }
+  keep_alive &
+
 env:
   - GROUP=index
   - GROUP=lock
