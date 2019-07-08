@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 ## If the cache gets corrupted, clean it at https://travis-ci.com/ORG/REPO/caches .
 before_cache:
