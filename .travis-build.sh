@@ -8,9 +8,9 @@ ROOT=$TRAVIS_BUILD_DIR/..
 # Fail the whole script if any command fails
 set -e
 
-## Short version, intended to be used when triggering downstream Travis jobs.
-echo "Should next trigger downstream jobs."
-true
+# ## Short version, intended to be used when triggering downstream Travis jobs.
+# echo "Should next trigger downstream jobs."
+# true
 
 ## Build Checker Framework
 (cd $ROOT && git clone --depth 1 https://github.com/typetools/checker-framework.git)
