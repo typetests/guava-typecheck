@@ -8,10 +8,6 @@ ROOT="$( cd "$(dirname "$0")"/.. ; pwd -P )"
 # Fail the whole script if any command fails
 set -e
 
-# ## Short version, intended to be used when triggering downstream Travis jobs.
-# echo "Should next trigger downstream jobs."
-# true
-
 ## Build Checker Framework
 (cd $ROOT && git clone --depth 1 https://github.com/typetools/checker-framework.git)
 # This also builds annotation-tools and jsr308-langtools
@@ -32,6 +28,6 @@ elif [[ "$1" == "index" ]]; then
 elif [[ "$1" == "nothing" ]]; then
   true
 else
-  echo "Bad argument '$1' to travis-build.sh"
+  echo "Bad argument '$1' to build.sh"
   false
 fi
