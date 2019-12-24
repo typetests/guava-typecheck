@@ -2,7 +2,8 @@ language: java
 jdk:
   - openjdk8
 
-## If the cache gets corrupted, clean it at https://travis-ci.com/ORG/REPO/caches .
+## If the cache gets corrupted, clean it at https://travis-ci.com/ORG/REPO/caches
+## or at https://travis-ci.org/ORG/REPO/caches .
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
